@@ -1,0 +1,81 @@
+# train initial
+seed: 114514
+
+checkpoint: false # 控制要不要加载参数
+resume: false  # 控制要不要加载模型以外的参数，也就是中断后重启
+new_checkpoint_dir: 'checkpoints/new_checkpoint'
+checkpoint_dir: 'checkpoints/saved_checkpoint'
+checkpoint_file_name: 'motionagformer-b-h36m.pth.tr'
+#checkpoint_file_name: 'latest_epoch.pth.tr'
+resume_checkpoint_dir: 'checkpoints/resume_checkpoint'
+resume_checkpoint_name: 'latest_epoch.pth'
+
+
+# evaluate 开关
+eval_only: false
+evaluate_checkpoint_file_dir: 'evaluate_checkpoint'
+evaluate_checkpoint_file: 'motionagformer-xs-h36m.pth.tr'
+
+
+# train
+epochs: 800
+# learning_rate: 0.000005
+#learning_rate: 0.00004
+learning_rate: 0.0007
+weight_decay: 0.01
+learning_rate_decay: 0.9
+#root_rel: true
+warmup: true
+warmup_epoches: 10
+training_epoch_patience: 30
+
+# train Loss scal控制部分
+lambda_mpjpe_velocity: 20.0
+lambda_n_mpjpe: 0.5
+lambda_limb_len_var: 0.0
+lambda_limb_len: 0.0
+lambda_limb_cos_simi: 0.0
+lambda_limb_cos_simi_velocity: 0.0
+
+
+
+
+# logging 部分
+logger_dir_path: './loggings'
+logger_file_name: 'sportspose-stcformer-dete-server-batch64-lr0007.log'
+
+
+# Dataset 部分
+data_root: './data/clips/'
+#add_velocity: false
+flip: true
+#use_proj_as_2d: false
+clip_set_name: 'SPdete-27'
+#clip_set_name: 'SPmulti-27'
+#source_file_path: './data/sp_no_conf_cam_source_final.pkl'
+source_file_path: './data/sp_hr_conf_cam_source_1camera.pkl'
+input_channel_number: 2
+
+
+# DataLoader Parameters
+batch_size: 64
+num_cpus: 20
+pin_memory: true
+persistent_workers: true
+
+num_joints: 17
+
+model_name: STCFormer
+
+
+
+# Model部分，根据当前的模型修改
+
+layers: 6
+d_hid: 256
+# d_hid: 512  # STCFormer-L
+num_frame: 27
+num_joints_in: 17
+num_joints_out: 17
+
+

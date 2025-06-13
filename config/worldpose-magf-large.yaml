@@ -1,0 +1,89 @@
+# train initial
+seed: 114514
+
+checkpoint: false # 控制要不要加载参数
+resume: false  # 控制要不要加载模型以外的参数，也就是中断后重启
+new_checkpoint_dir: 'checkpoints/new_checkpoint'
+checkpoint_dir: 'checkpoints/saved_checkpoint'
+checkpoint_file_name: 'motionagformer-l-wp.pth.tr'
+#checkpoint_file_name: 'latest_epoch.pth.tr'
+resume_checkpoint_dir: 'checkpoints/resume_checkpoint'
+resume_checkpoint_name: 'latest_epoch.pth'
+
+
+# evaluate 开关
+eval_only: false
+evaluate_checkpoint_file_dir: 'checkpoints/evaluate_checkpoint'
+evaluate_checkpoint_file: 'motionagformer-large-wp-gt2.pth.tr'
+
+
+# train
+epochs: 80
+#learning_rate: 0.0005
+learning_rate: 0.0007
+weight_decay: 0.01
+learning_rate_decay: 0.9
+#root_rel: true
+warmup: true
+warmup_epoches: 5
+training_epoch_patience: 5
+
+# train Loss scal控制部分
+lambda_mpjpe_velocity: 20.0
+lambda_n_mpjpe: 0.5
+lambda_limb_len_var: 0.0
+lambda_limb_len: 0.0
+lambda_limb_cos_simi: 0.0
+lambda_limb_cos_simi_velocity: 0.0
+
+
+
+# logging 部分
+logger_dir_path: './loggings'
+logger_file_name: 'magf-large27-wpgt2.log'
+
+
+# Dataset 部分
+data_root: './data/clips/'
+#add_velocity: false
+flip: true
+#use_proj_as_2d: false
+clip_set_name: 'WPgt-27'
+source_file_path: './data/wp_no_conf_cam_source_final.pkl'
+# source_file_path: './data/sp_hr_conf_cam_source_1camera.pkl'
+input_channel_number: 3
+
+# DataLoader Parameters
+batch_size: 32
+num_cpus: 20
+pin_memory: true
+persistent_workers: true
+
+num_joints: 17
+
+# Model
+model_name: MotionAGFormer
+n_layers: 26
+dim_in: 3
+dim_feat: 128
+dim_rep: 512
+dim_out: 3
+mlp_ratio: 4
+act_layer: gelu
+attn_drop: 0.0
+drop: 0.0
+drop_path: 0.0
+use_layer_scale: True
+layer_scale_init_value: 0.00001
+use_adaptive_fusion: True
+num_heads: 8
+qkv_bias: False
+qkv_scale: null
+hierarchical: False
+use_temporal_similarity: True # Only useful when use_tcn = False
+neighbour_num: 2  # Only useful when use_temporal_similarity = True
+temporal_connection_len: 1 # Only useful when use_tcn = False, use_temporal_similarity = False
+use_tcn: False
+graph_only: False
+#n_frames: 243 # 243 if add_velocity is False else 242
+n_frames: 27 # 243 if add_velocity is False else 242

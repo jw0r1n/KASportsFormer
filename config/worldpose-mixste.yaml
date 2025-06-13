@@ -1,0 +1,101 @@
+# train initial
+seed: 1919810
+
+checkpoint: false # 控制要不要加载参数
+resume: false  # 控制要不要加载模型以外的参数，也就是中断后重启
+new_checkpoint_dir: 'checkpoints/new_checkpoint'
+checkpoint_dir: 'checkpoints/saved_checkpoint'
+checkpoint_file_name: 'mixste-27-wpgt2.pth.tr'
+#checkpoint_file_name: 'latest_epoch.pth.tr'
+resume_checkpoint_dir: 'checkpoints/resume_checkpoint'
+resume_checkpoint_name: 'latest_epoch.pth'
+
+
+# evaluate 开关
+eval_only: false
+evaluate_checkpoint_file_dir: 'evaluate_checkpoint'
+evaluate_checkpoint_file: 'mixste-wp-gt2.pth.tr'
+
+
+# train
+epochs: 100
+#learning_rate: 0.0005
+learning_rate: 0.00004
+#learning_rate: 0.0007
+weight_decay: 0.01
+learning_rate_decay: 0.9
+#root_rel: true
+warmup: true
+warmup_epoches: 5
+training_epoch_patience: 5
+
+# train Loss scal控制部分
+lambda_mpjpe_velocity: 20.0
+lambda_n_mpjpe: 0.5
+lambda_limb_len_var: 0.0
+lambda_limb_len: 0.0
+lambda_limb_cos_simi: 0.0
+lambda_limb_cos_simi_velocity: 0.0
+
+
+
+
+# logging 部分
+logger_dir_path: './loggings'
+logger_file_name: 'mixste-27-wpgt2'
+
+
+# Dataset 部分
+data_root: './data/clips/'
+#add_velocity: false
+flip: true
+#use_proj_as_2d: false
+clip_set_name: 'WPgt-27'
+# clip_set_name: 'SPmulti-27'
+# source_file_path: './data/sp_no_conf_cam_source_final.pkl'
+source_file_path: './data/wp_no_conf_cam_source_final.pkl'
+input_channel_number: 2
+
+
+# DataLoader Parameters
+batch_size: 32
+num_cpus: 20
+pin_memory: true
+persistent_workers: true
+
+num_joints: 17
+
+model_name: MixSTE
+
+
+
+# Model部分，根据当前的模型修改
+
+num_frame: 27
+in_chans: 2
+embed_dim_ratio: 512
+depth: 8
+num_heads: 8
+mlp_ratio: 2.
+qkv_bias: True
+qk_scale:
+drop_rate: 0.
+attn_drop_rate: 0.
+drop_path_rate: 0.1
+norm_layer:
+
+
+#        Args:
+#            num_frame (int, tuple): input frame number
+#            num_joints (int, tuple): joints number
+#            in_chans (int): number of input channels, 2D joints have 2 channels: (x,y)
+#            embed_dim_ratio (int): embedding dimension ratio
+#            depth (int): depth of transformer
+#            num_heads (int): number of attention heads
+#            mlp_ratio (int): ratio of mlp hidden dim to embedding dim
+#            qkv_bias (bool): enable bias for qkv if True
+#            qk_scale (float): override default qk scale of head_dim ** -0.5 if set
+#            drop_rate (float): dropout rate
+#            attn_drop_rate (float): attention dropout rate
+#            drop_path_rate (float): stochastic depth rate
+#            norm_layer: (nn.Module): normalization layer
