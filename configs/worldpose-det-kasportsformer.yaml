@@ -1,0 +1,89 @@
+
+# Checkpoint load
+checkpoint: false
+resume: false
+checkpoint_dir: 'checkpoints/saved_checkpoint'
+resume_checkpoint_dir: 'checkpoints/resume_checkpoint'
+resume_checkpoint_name: 'resume.pth'
+
+
+# evaluate
+eval_only: false
+evaluate_checkpoint_file_dir: 'checkpoints/evaluate_checkpoint'
+evaluate_checkpoint_file: 'kasportsformer-wp-det.pth'
+
+
+# train
+seed: 114514
+new_checkpoint_dir: 'checkpoints/new_checkpoint'
+new_checkpoint_name: 'new_ckp'
+epochs: 120
+learning_rate: 0.0005
+weight_decay: 0.01
+learning_rate_decay: 0.9
+#root_rel: true
+warmup: true
+warmup_epoches: 10
+training_epoch_patience: 20
+
+lambda_mpjpe_velocity: 20.0
+lambda_n_mpjpe: 0.5
+lambda_limb_len_var: 0.0
+lambda_limb_len: 0.0
+lambda_limb_cos_simi: 0.0
+lambda_limb_cos_simi_velocity: 0.0
+
+
+# Weight & Bias
+use_wandb: true
+wandb_name: 'your wandb running name'
+wandb_project_name: 'your wandb project name'
+wandb_api_key: 'your wandb api key'
+
+
+# logging
+logger_dir_path: './loggings'
+logger_file_name: 'your logging file name.log'
+
+
+# Dataset
+data_root: './data/clips/'
+#add_velocity: false
+flip: true
+#use_proj_as_2d: false
+clip_set_name: 'WPdete-27'
+source_file_path: './data/wp_hr_conf_cam_source_final.pkl'
+input_channel_number: 3
+
+# DataLoader Parameters
+batch_size: 32
+num_cpus: 20
+pin_memory: true
+persistent_workers: true
+num_joints: 17
+n_frames: 27
+
+# Model
+model_name: KASportsFormer
+n_layers: 26
+dim_in: 3
+dim_feat: 128
+dim_rep: 512
+dim_out: 3
+mlp_ratio: 4
+act_layer: gelu
+attn_drop: 0.0
+drop: 0.0
+drop_path: 0.0
+use_layer_scale: True
+layer_scale_init_value: 0.00001
+use_adaptive_fusion: True
+num_heads: 8
+qkv_bias: False
+qkv_scale: null
+hierarchical: False
+use_temporal_similarity: True # Only useful when use_tcn = False
+neighbour_num: 4  # Only useful when use_temporal_similarity = True
+temporal_connection_len: 1 # Only useful when use_tcn = False, use_temporal_similarity = False
+use_tcn: False
+graph_only: False
