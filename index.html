@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KASportsFormer</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-?????"></script> -->
+  <!-- <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-???????');
+  </script> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="https://takedalab.g.sp.m.is.nagoya-u.ac.jp/groups/sports-behavior-group">
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+        </a>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More Researches
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://github.com/calvinyeungck/AthletePose3D">
+              AthletePose3D
+            </a>
+            <a class="navbar-item" href="https://github.com/calvinyeungck/3D-Shot-Posture-Dataset">
+              AutoSoccerPose
+            </a>
+            <a class="navbar-item" href="https://github.com/SZucchini/unsupervised-fine-tuning-pose3d-for-sports">
+              Pseudo-label Unsupervised 3D Pose Fine-tuning
+            </a>
+            <a class="navbar-item" href="https://github.com/ryota-skating/FS-Jump3D">
+              FS-Jump3D
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">KASportsFormer: Kinematic Anatomy Enhanced Transformer for 3D Human
+              Pose Estimation on Short Sports Scene Videos</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://github.com/jw0r1n">Zhuoer Yin</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://github.com/calvinyeungck">Calvin Yeung</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://github.com/SZucchini">Tomohiro Suzuki</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://github.com/ryota-skating">Ryota Tanaka</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://sites.google.com/view/keisuke198619jp">Keisuke Fujii</a><sup>1,2</sup>,
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Graduate School of Informatics, Nagoya University,</span>
+              <span class="author-block"><sup>2</sup>RIKEN</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2506.11451" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2506.11451" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Video Link. -->
+                <!-- <span class="link-block">
+                  <a href="https://www.youtube.com/watch?v=???"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span> -->
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/jw0r1n/KASportsFormer"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Dataset Link. -->
+                <!-- <span class="link-block">
+                  <a href="https://github.com"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="far fa-images"></i>
+                    </span>
+                    <span>Data</span>
+                  </a>
+                </span> -->
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img src="./static/images/overview.png" alt="An overview of our proposed KASportsFormer." />
+        <h2 class="subtitle has-text-centered">
+          An overview illustration of our anatomy feature utilization. Anatomy structures are extracted and composed
+          into bones and limbs, which are interacted in a multimodality strategy
+        </h2>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Recently, transformer based approaches have demonstrated convincible performance in solving real-world 3D
+              Human Pose Estimation problems. Albeit these excellent approaches achieve fruitful results on benchmark
+              datasets, they tend to fail on sports videos whose movements are more complicated than daily life actions.
+            </p>
+            <p>Moreover, due to the difficulty in capturing 3D sports pose data and the fact that critical actions in a
+              sports game often appear in moments of time (e.g. shooting), current 3D pose estimation models appear to
+              lack the analyzing ability when encountered with short sports videos. </p>
+            <p>In this paper, we present the Bone extractor (BoneExt) and Limb fuser (LimbFus) modules, which decomposes
+              bone length and directions from
+              joint input and exploits potential kinematic dependencies of
+              sports actions through a multimodality manner. Through composing an anatomy feature into a Spatio-temporal
+              Transformer, we propose KASportsFormer, which exhibits an improved capability of comprehending underlying
+              human sports pose with temporal limitations. </p>
+            <p>We evaluate our methods through two representative sports
+              scene datasets: SportsPose and WorldPose. Our proposed method achieves state-of-the-art results with MPJPE
+              errors of 58.08 mm and 34.37 mm, respectively.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+      <!-- Paper video. -->
+      <!-- <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Video</h2>
+          <div class="publication-video">
+            <iframe src="https://www.youtube.com/embed/000000000000?rel=0&amp;showinfo=0" frameborder="0"
+              allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div> -->
+      <!--/ Paper video. -->
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title">Pipeline</h2>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column">
+          <p>We frist extract the bone expression inside the original coordinates.</p>
+          <p><img src="./static/images/pipelinepart1.png" alt="bone extractor" /></p>
+
+        </div>
+        <div class="column">
+          <p>We then compose extracted bones into various limbs, including biological ones and
+            hypothetical ones.</p>
+          <p><img src="./static/images/pipelinepart2.png" alt="limb fuser" /></p>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column">
+          <p>We treat the extractd bone and reconstructed limb as different context and thus we study their interations
+            with a multimodality manner.</p>
+          <p class="has-text-centered"><img src="./static/images/pipelinepart3.png" alt="multimodality processing" />
+          </p>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <p>The overall proprocessing pipeline of our proposed methods:</p>
+          <p><img src="./static/images/overall.png" alt="overall processing pipeline" /></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title">Experiments</h2>
+          <p>We compare our proposed method with two sports motion centered datasets.</p>
+          <p>We first compare our proposed method with concurrent 3D Human Pose Estimation methods on SportsPose
+            Datasets.</p>
+          <p><img src="./static/images/sportspose.png" alt="SportsPose dataset quantitative comparisons" /></p>
+          <p>We also apply a comparison on each action category within the SportsPose Dataset.</p>
+          <p><img src="./static/images/sportspose2.png" alt="SportsPose dataset action based quantiative comparisons">
+          </p>
+          <p>To demonstrate the capability of sports applications, we additionally adopt a Soccer Game focused human
+            pose dataset called WorldPose, and compare our proposed method with other works.</p>
+          <p><img src="./static/images/worldpose.png" alt="WorldPose dataset quantitative comparisons"></p>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-full-width has-text-centered">
+          <p>Experiments on different configurations of our proposed method.</p>
+          <p><img src="./static/images/exp2.png" /></p>
+        </div>
+        <div class="column is-full-width has-text-centered">
+          <p>Experimetns on different parameters of our LimbFus module.</p>
+          <p><img src="./static/images/exp1.png" /></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title">Visualization</h2>
+          <p>Qualitative comparisons of our KASportsFormer with MotionAGFormer and D3DP on activities of
+            SportsPose with detected inputs. </p>
+          <p><img src="./static/images/visualization.png" alt="Visualization." /></p>
+          <p>The gray skeleton is the ground truth 3D pose. The blue skeleton represents
+            the estimated 3D pose result. The red dashed line indicates the incorrect regions of the compared methods,
+            and the blue dashed line represents the couterparts of our proposed method.</p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width has-text-centered">
+          <h2 class="title">Demo</h2>
+          <video poster="" id="demoskate" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/dd.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <p>If you find our work useful, please cite the paper</p>
+      <pre><code>@inproceeding{yin2025kasportsformer,
+  author    = {Zhuoer Yin, Calvin Yeung, Tomohiro Suzuki, Ryota Tanaka},
+  title     = {KASportsFormer: Kinematic Anatomy Enhanced Transformer for 3D Human Pose Estimation on Short Sports Scene Videos},
+  journal   = {???},
+  year      = {2025},
+}</code></pre>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Concurrent Work. -->
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title">More of Our Works</h2>
+          <div class="content has-text-justified">
+            <p class="tag is-medium">
+              You can also check out our concurrent sports-centered human pose analysis works.
+            </p>
+            <p>
+              <a href="https://arxiv.org/abs/2503.07499">AthletePose3D</a> (AP3D) is a novel dataset for monocular 3D
+              human pose estimation in sports biomechanics, designed to capture high-speed, high-acceleration movements.
+              Alongside the raw dataset, we also provide a training-ready version prepared for 2D and 3D pose estimation
+              modeling, including both preprocessed annotations and AP3D fine-tuned model parameters.
+            </p>
+            <p>
+              <a href="https://arxiv.org/abs/2405.12070">AutoSoccerPose</a> is a pipeline aimed at semi-automating 2D
+              and
+              3D pose estimation and posture analysis. While achieving full automation proved challenging, we provide a
+              foundational baseline, extending its utility beyond the scope of annotated data.
+            </p>
+            <p>
+              <a href="https://github.com/SZucchini/unsupervised-fine-tuning-pose3d-for-sports">Pseudo-label based
+                unsupervised fine-tuning of a monocular 3D pose estimation model for sports motions</a> is an accurate
+              and convenient sports motion capture system based on un-supervised fine-tuning.
+            </p>
+            <p>
+              <a href="https://github.com/ryota-skating/FS-Jump3D">FS-Jump3D</a> is the first figure skating jump
+              dataset that includes both 3D pose data and video data from 12 viewpoints. The jump data were captured
+              using the markerless motion-capture system (Theia3D, Theia) by positioning 12 high-speed cameras (Miqus
+              Video, Qualisys) on the ice skating rink.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Concurrent Work. -->
+    </div>
+  </section>
+
+
+
+  <section class="section">
+    <div class="container is-max-desktop content">
+      <h2 class="title is-4">Acknowledgement</h2>
+      <div class="notification is-size-7">
+        <p>Our work refers to and builds on the following repositories and datasets:</p>
+        <ul>
+          <li><a href="https://github.com/TaatiTeam/MotionAGFormer">MotionAGFormer</a></li>
+          <li><a href="https://github.com/PKU-ICST-MIPL/FinePOSE_CVPR2024">FinePose</a></li>
+          <li><a href="https://christianingwersen.github.io/SportsPose/">SportsPose</a></li>
+          <li><a href="https://eth-ait.github.io/WorldPoseDataset/">WorldPose</a></li>
+        </ul>
+        <p>We appreciate the authors for their invaluable codes release and we also thank the authors' contribution to
+          sports pose data creation</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="https://arxiv.org/pdf/2506.11451" class="external-link" disabled>
+          <i class="fas fa-file-pdf"></i>
+        </a>
+        <a class="icon-link" href="https://github.com/jw0r1n/" class="external-link" disabled>
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+            <p>Our work is available under <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache-2.0</a> License.
+              Please see the Github repository for more information.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
