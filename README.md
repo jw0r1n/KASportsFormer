@@ -1,9 +1,9 @@
 
 # KASportsFormer: Kinematic Anatomy Enhanced Transformer for 3D Human Pose Estimation on Short Sports Scene Videos
 
-<a href="https://pytorch.org/get-started/locally/"><img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white"></a> [![arXiv](https://img.shields.io/badge/arXiv-2506.11451-b31b1b.svg)](https://arxiv.org/abs/2310.16288) 
+<a href="https://pytorch.org/get-started/locally/"><img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white"></a> [![arXiv](https://img.shields.io/badge/arXiv-2507.20763-b31b1b.svg)](https://arxiv.org/abs/2507.20763) 
 
-<a href="https://github.com/jw0r1n/KASportsFormer"><img alt="ProjectPage" src="https://img.shields.io/badge/Project Page-808080?logo=homepage&logoColor=white"></a>
+<a href="https://jw0r1n.github.io/KASportsFormer"><img alt="ProjectPage" src="https://img.shields.io/badge/Project Page-808080?logo=homepage&logoColor=white"></a>
 
 This is the official PyTorch implementation of the paper "KASportsFormer: Kinematic Anatomy Enhanced Transformer for 3D Human Pose Estimation on Short Sports Scene Videos".
 
@@ -172,11 +172,14 @@ We appreciate the authors for their invaluable codes and data release.
 If you find our work useful for your project, please consider citing the paper:
 
 ```
-@inproceedings{kasportsformer2025,
-  title     =   {KASportsFormer: Kinematic Anatomy Enhanced Transformer for 3D Human Pose Estimation on Short Sports Scene Videos}, 
-  author    =   {Zhuoer Yin, Calvin Yeung, Tomohiro Suzuki, Ryota Tanaka},
-  booktitle =   {???},
-  year      =   {2025}
+@misc{yin2025kasportsformer,
+      title={KASportsFormer: Kinematic Anatomy Enhanced Transformer for 3D Human Pose Estimation on Short Sports Scene Video}, 
+      author={Zhuoer Yin and Calvin Yeung and Tomohiro Suzuki and Ryota Tanaka and Keisuke Fujii},
+      year={2025},
+      eprint={2507.20763},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2507.20763}, 
 }
 ```
 
