@@ -34,7 +34,7 @@ We follow the [MotionBERT](https://github.com/Walter0807/MotionBERT)'s dataset s
 
 For the detailed instruction of how we preprocess the datasets, please refer to the following tools:
 
-* [SportsPose Preprocessing Tool](https://github.com/yydrowz3/sportspose-preprocess)
+* [SportsPose Preprocessing Tool](https://github.com/yydrowz3/sportspose-preprocess-tool)
 * [WorldPose Preprocessing Tool](https://github.com/yydrowz3/worldpose-preprocess)
 
 or you can download our preprocessed source files:
